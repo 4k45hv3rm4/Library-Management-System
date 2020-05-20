@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Author Name: {{author.first_name}}  {{author.last_name}}</h1>
+
+
+  <p><strong>D.O.B:</strong> {{author.date_of_birth}}</p>
+  <p>Books by Author <br> <br>  {% for i in books_by_author %}  <a href="{{i.get_absolute_url}}">     {{i.title}}</b></a> ({{ i.bookinstance_set.all|length }})
+  <p>{{i.summary}}</p><hr>
+  {% if user.is_staff %}
+    <a href="{% url 'author_update' author.id %}"> Update </a>
+    <a href="{% url 'author_delete' author.id %}"> Delete </a>
+  {% endif %}
+  {% endfor %}</p>
+
+{% endblock %}

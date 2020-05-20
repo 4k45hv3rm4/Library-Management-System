@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+
+{% block title %} Users list {%endblock%}
+{% block content %}
+ <h1>All users </h1>
+
+    {% if user.is_staff %}
+      <ul>
+        {% if obj%}
+            {% for u in obj %}
+            <li class="text-success text-justify text-monospace">
+              {{u.username | title }}
+            </li>
+            {% endfor %}
+
+        {% else %}
+          <p>There are no Users registered borrowed.</p>
+        {% endif %}
+      </ul>
+
+    {% endif %}
+{% endblock %}
